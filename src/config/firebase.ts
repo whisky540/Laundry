@@ -1,16 +1,21 @@
 import { initializeApp } from 'firebase/app';
-import { initializeAuth, getAuth } from 'firebase/auth';
+import { getAuth, inMemoryPersistence, initializeAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
-  authDomain: "your-project-id.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project-id.appspot.com",
-  messagingSenderId: "1234567890",
-  appId: "your-app-id",
+  authDomain: "laundryapp-99ae2.firebaseapp.com",
+  projectId: "laundryapp-99ae2",
+  storageBucket: "laundryapp-99ae2.firebasestorage.app",
+  messagingSenderId: "371180427963",
+  appId: "1:371180427963:web:76ec3bfa4a6736479f679e",
+  measurementId: "G-W5RCXRS5G8"
 };
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+const employeeApp = initializeApp(firebaseConfig, 'employee');
 export const auth = getAuth(app);
+export const employeeAuth = initializeAuth(employeeApp, {
+  persistence: inMemoryPersistence,
+});
